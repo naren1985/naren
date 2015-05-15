@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context=".MainActivity"
+                android:orientation="vertical"
+                android:gravity="center">
+
+  <EditText
+      android:id="@+id/editTextAmount"
+      android:gravity="center"
+      android:hint="@string/hintAmount"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:inputType="numberDecimal"/>
+
+  <LinearLayout
+      android:layout_gravity="center"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/buttonWithdraw"
+        android:layout_width="0dp"
+        android:text="@string/buttonTextWithdraw"
+        android:layout_height="wrap_content"
+        android:layout_weight="50"/>
+
+    <Button
+        android:id="@+id/buttonDeposit"
+        android:layout_width="0dp"
+        android:text="@string/buttonTextDeposit"
+        android:layout_height="wrap_content"
+        android:layout_weight="50"/>
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/labelBalance"
+        android:padding="5dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/labelTextBalance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textViewBalance"
+        android:textColor="#0c0"
+        android:padding="5dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@integer/currentBalance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+  </LinearLayout>
+
+</LinearLayout>
