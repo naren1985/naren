@@ -29,20 +29,27 @@ public class BankAccount {
   }
 
   public void withdraw(double amount, EditText input) {
-    if (balance - amount < 0) {
-      balance -= (amount + OVERDRAFT_FEE);
+    balance -= amount;
+
+    if (balance < 0) {
+      balance -= OVERDRAFT_FEE;
       input.setHint("Overdraft fee charged");
     } else {
-      balance -= amount;
       input.setHint("Withdrew " + String.valueOf(amount));
     }
+
     normalizeBalance();
   }
 
   public void deposit(double amount, EditText input) {
-    double depositBonusPercent = balance / 1000;  // rich get richer am i right...
+    double depositBonusPercent = 0.0;
+
+    if (balance > 0) {
+      depositBonusPercent = balance / 1000;  // rich get richer am i right...
+    }
     balance += (amount + (amount * depositBonusPercent));
     normalizeBalance();
+    
     input.setHint("Deposited " + String.valueOf(amount) + " (Bonus " + (amount * depositBonusPercent) + ")" );
   }
 
