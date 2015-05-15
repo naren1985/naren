@@ -12,8 +12,8 @@ public class BankAccount {
 
   private double balance;
 
-  private void setBalance(double mBalance) {
-    this.balance = mBalance;
+  private void setBalance(double balance) {
+    this.balance = balance;
   }
 
   public double getBalance() {
