@@ -33,7 +33,7 @@ public class BankAccount {
 
     if (balance < 0) {
       balance -= OVERDRAFT_FEE;
-      input.setHint("Overdraft fee charged");
+      input.setHint("Overdraft fee charged (" + OVERDRAFT_FEE + ")");
     } else {
       input.setHint("Withdrew " + String.valueOf(amount));
     }
@@ -42,15 +42,16 @@ public class BankAccount {
   }
 
   public void deposit(double amount, EditText input) {
-    double depositBonusPercent = 0.0;
+    double depositBonusModifier = 0.0;
 
     if (balance > 0) {
-      depositBonusPercent = balance / 1000;  // rich get richer am i right...
+      depositBonusModifier = balance / 10000;
     }
-    balance += (amount + (amount * depositBonusPercent));
+
+    balance += (amount + (amount * depositBonusModifier));
     normalizeBalance();
-    
-    input.setHint("Deposited " + String.valueOf(amount) + " (Bonus " + (amount * depositBonusPercent) + ")" );
+
+    input.setHint("Deposited " + String.valueOf(amount) + " (Bonus " + (amount * depositBonusModifier) + ")" );
   }
 
   private void normalizeBalance() {
