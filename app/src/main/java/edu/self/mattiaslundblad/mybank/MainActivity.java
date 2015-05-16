@@ -10,10 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import edu.self.mattiaslundblad.accounts.BankAccount;
+import edu.self.mattiaslundblad.accounts.SavingsAccount;
 
 public class MainActivity extends ActionBarActivity {
 
-  private static final String TAG = "MainActivity";
+  private static final String tag = "MainActivity";
 
   private EditText editTextAmount;
   private Button buttonWithdraw;
@@ -29,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
     getViewElements();
     createViewListeners();
 
-    myAccount = new BankAccount(100.0);
+    myAccount = new SavingsAccount();
 
     textViewBalance.setText(String.valueOf(myAccount.getBalance()));
   }
@@ -53,10 +55,9 @@ public class MainActivity extends ActionBarActivity {
       public void onClick(View v) {
         if (checkInput(editTextAmount)) {
           double amount = Double.parseDouble(editTextAmount.getText().toString());
-          myAccount.withdraw(amount, editTextAmount);
+          editTextAmount.setHint(myAccount.withdraw(amount));
         }
-
-        updateViewElements();
+        updateViewBalance();
       }
     });
 
@@ -65,9 +66,9 @@ public class MainActivity extends ActionBarActivity {
       public void onClick(View v) {
         if (checkInput(editTextAmount)) {
           double amount = Double.parseDouble(editTextAmount.getText().toString());
-          myAccount.deposit(amount, editTextAmount);
+          editTextAmount.setHint(myAccount.deposit(amount));
         }
-        updateViewElements();
+        updateViewBalance();
       }
     });
   }
@@ -81,12 +82,12 @@ public class MainActivity extends ActionBarActivity {
       return true;
     } catch (NumberFormatException e) {
       editable.setHint("Not a valid amount");
-      Log.d(TAG, e.getMessage());
+      Log.d(tag, e.getMessage());
       return false;
     }
   }
 
-  private void updateViewElements() {
+  private void updateViewBalance() {
     editTextAmount.setText("");
     textViewBalance.setText(String.valueOf(myAccount.getBalance()));
   }
